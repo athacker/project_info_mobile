@@ -1,0 +1,25 @@
+<div class="scrollable">
+    <div class="scrollable-content">
+
+        <div class="list-group text-center">
+
+            <div class="list-group-item list-group-item-home">
+              <h3> {{title}}</h3>
+            </div>
+
+
+
+            <div ng-repeat="item in data track by $index">
+
+                <div class="list-group-item list-group-item-home">
+                    <div><h4>{{item.title}}</h4> </div>
+                    <div>{{item.value}}</div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
