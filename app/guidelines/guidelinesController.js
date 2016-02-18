@@ -1,7 +1,11 @@
+
+var GuidelinesControllerModule = angular.module('GuidelinesControllerModule', ['GuidelinesServiceModule']);
+
+
 /**
  * Created by AndreaThacker on 1/27/2016.
  */
-guidelines.controller('guidelinesController', ['$scope',function( $scope) {
+GuidelinesControllerModule.controller('guidelinesController', ['$scope','guidelinesService',function( $scope, guidelinesService) {
 
    
     var gc = this;

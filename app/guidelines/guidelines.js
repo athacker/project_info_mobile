@@ -1,7 +1,6 @@
+'use strict';
 
-    'use strict';
-
-var guidelines = angular.module('myApp.guidelines', ['ngRoute'])
+var guidelines = angular.module('myApp.guidelines', ['ngRoute','GuidelinesControllerModule','GuidelinesServiceModule'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/guidelines', {
