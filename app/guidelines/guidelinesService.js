@@ -3,10 +3,12 @@
  */
 var GuidelinesServiceModule = angular.module('GuidelinesServiceModule',[]);
 
-GuidelinesServiceModule.service('guidelinesService', [  function ( ) {
+GuidelinesServiceModule.service('guidelinesService', ['$resource',  function ( $resource) {
 
+    return $resource('http://localhost:8080/guidelines ', {}, {
+        query: { method: 'GET',isArray: false }
+    });
 
-        return{}
 
 
     }]);
