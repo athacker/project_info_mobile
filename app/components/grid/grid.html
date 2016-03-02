@@ -8,12 +8,8 @@
             </div>
 
 
-
+            <!--MODALS -->
                 <div ui-content-for="modals">
-
-
-
-
 
                     <div class="modal" ui-if="blockAddModal" ui-state='blockAddModal'>
                         <div class="modal-backdrop in"></div>
@@ -50,12 +46,6 @@
                     </div>
 
 
-
-
-
-
-
-
                     <div class="modal" ui-if="blockEditModal" ui-state='blockEditModal'>
                         <div class="modal-backdrop in"></div>
                         <div class="modal-dialog">
@@ -88,22 +78,11 @@
                                 </form>
 
 
-
-
-
-
-
-
-
-
-
-
                             </div>
-
-
 
                         </div>
                     </div>
+            </div>
 
 
 
@@ -112,35 +91,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                </div>
-
-
-
-
-
-
-
-
-
+<!--GRID -->
             <div ng-repeat="item in data track by $index">
 
-                <div class="list-group-item list-group-item-home" ui-turn-on="blockEditModal" ng-click="populateEditModal(data[$index])">
+                <div class="list-group-item list-group-item-home" ui-turn-on="blockEditModal" ng-click="populateEditModal($index)">
                     <div><h4>{{item.title}}</h4> </div>
                     <div>{{item.value}}   </div>
                 </div>

@@ -14,10 +14,10 @@ angular.module('myApp.grid.grid-directive', [])
         templateUrl: 'components/grid/grid.html',
         controller: function($scope  ){
             $scope.editItem={};
+            $scope.currentIndex=0;
             $scope.item={};
 
             $scope.save= function(item){
-                alert("Directive save: " + JSON.stringify(item));
                 $scope.accept({item: item});
             },
 
@@ -27,13 +27,17 @@ angular.module('myApp.grid.grid-directive', [])
 
             $scope.cancel=function(){
                 $scope.newItem={};
-                $scope.addNew=false;
             };
 
-            $scope.populateEditModal = function(item){
-                angular.extend($scope.editItem, item);
+            $scope.populateEditModal = function($index){
+                angular.extend($scope.editItem, $scope.data[$index]);
+                $scope.currentIndex = $index;
             }
 
+            $scope.update = function(editItem){
+                angular.extend($scope.data[ $scope.currentIndex],editItem);
+                $scope.save(editItem);
+            }
 
         }
 
