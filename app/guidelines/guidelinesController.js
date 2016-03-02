@@ -14,8 +14,6 @@ GuidelinesControllerModule.controller('guidelinesController', ['$scope','guideli
     gc.init = init();
 
 
-
-
     function init() {
         guidelinesService.query(function (data) {
             gc.data = data._embedded.guidelines;
