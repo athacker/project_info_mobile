@@ -4,21 +4,148 @@
         <div class="list-group text-center">
 
             <div class="list-group-item list-group-item-home">
-              <h3> {{title}}</h3>
+              <h3> {{title}}  &nbsp; <i class="fa fa-plus-square" ui-turn-on="blockAddModal"></i></h3>
             </div>
+
+
+
+                <div ui-content-for="modals">
+
+
+
+
+
+                    <div class="modal" ui-if="blockAddModal" ui-state='blockAddModal'>
+                        <div class="modal-backdrop in"></div>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close"
+                                            ui-turn-off="blockAddModal">&times;</button>
+                                    <h4 class="modal-title">{{title}} - Add New Item</h4>
+                                </div>
+
+                                <form id="itemform" name="itemform" class="form-group">
+                                    <div class="modal-body">
+
+                                        <div class="input-group" show-errors>
+                                            <label class="control-label">Title</label>
+                                            <input type="text" id="title" name="title" class="form-control" ng-model="newItem.title" ng-required="true" />
+                                            <p class="help-block" ng-if="itemform.title.$error.required && itemform.title.$touched">Title is required</p>
+                                        </div>
+
+                                        <div class="input-group" show-errors >
+                                            <label class="control-label">Value</label>
+                                            <textarea id="value" cols="50" name="value" class="form-control editable-wrap" ng-model="newItem.value" ng-required="true"></textarea>
+                                            <p class="help-block" ng-if="itemform.value.$error.required && itemform.value.$touched">Value is required</p>
+                                        </div>
+                                    </div>
+                                   <div class="modal-footer">
+                                        <button ui-turn-off="blockAddModal" class="btn btn-default">Close</button>
+                                        <button ui-turn-off="blockAddModal" ng-disabled="itemform.$invalid" class="btn btn-primary" ng-click="save(newItem)">Save</button>
+                                   </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+                    <div class="modal" ui-if="blockEditModal" ui-state='blockEditModal'>
+                        <div class="modal-backdrop in"></div>
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close"
+                                            ui-turn-off="blockEditModal">&times;</button>
+                                    <h4 class="modal-title">{{title}} - Edit </h4>
+                                </div>
+
+                                <form id="editform" name="editform" class="form-group">
+                                    <div class="modal-body">
+
+                                        <div class="input-group" show-errors>
+                                            <label class="control-label">Title</label>
+                                            <input type="text" id="editTitle" name="editTitle" class="form-control" ng-model="editItem.title" ng-required="true" />
+                                            <p class="help-block" ng-if="editform.editTitle.$error.required && editform.editTitle.$touched">Title is required</p>
+                                        </div>
+
+                                        <div class="input-group" show-errors >
+                                            <label class="control-label">Value</label>
+                                            <textarea id="editValue" cols="50" name="editValue" class="form-control editable-wrap" ng-model="editItem.value" ng-required="true"></textarea>
+                                            <p class="help-block" ng-if="editform.editValue.$error.required && editform.editValue.$touched">Value is required</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button ui-turn-off="blockEditModal" class="btn btn-default">Close</button>
+                                        <button ui-turn-off="blockEditModal" ng-disabled="editform.$invalid" class="btn btn-primary" ng-click="update(editItem)">update</button>
+                                    </div>
+                                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+
 
 
 
             <div ng-repeat="item in data track by $index">
 
-                <div class="list-group-item list-group-item-home">
+                <div class="list-group-item list-group-item-home" ui-turn-on="blockEditModal" ng-click="populateEditModal(data[$index])">
                     <div><h4>{{item.title}}</h4> </div>
-                    <div>{{item.value}}</div>
+                    <div>{{item.value}}   </div>
                 </div>
 
             </div>
-
-
         </div>
 
     </div>

@@ -9,50 +9,32 @@ angular.module('myApp.grid.grid-directive', [])
         restrict: 'E',
 
         scope:{
-             title: '=', data: '=', remove: '&', accept: '&'
+            accept: '&', title: '=', data: '=',
         },
         templateUrl: 'components/grid/grid.html',
         controller: function($scope  ){
-            $scope.isEdit=false;
-            $scope.newItem={};
-            $scope.databackup=[];
+            $scope.editItem={};
+            $scope.item={};
 
-
-            //this isn't rednering fast enough!!'
-            angular.copy($scope.data, $scope.databackup);
-
-            $scope.saveNewItem=function(){
-                $scope.$broadcast('show-errors-check-validity');
-                if($scope.itemform.$valid){
-                    $scope.save($scope.newItem);
-                    $scope.addNew=false;
-                }
-            };
-
-            $scope.save= function(saveItem){
-                $scope.accept({item: saveItem});
+            $scope.save= function(item){
+                alert("Directive save: " + JSON.stringify(item));
+                $scope.accept({item: item});
             },
 
-                $scope.delete = function(removeItem ){
-                    $scope.remove( {item: removeItem});
-                };
+            $scope.delete = function(removeItem ){
+                $scope.remove( {item: removeItem});
+            };
 
             $scope.cancel=function(){
                 $scope.newItem={};
                 $scope.addNew=false;
             };
-            $scope.cancelEdit=function( $index ){
-                $scope.data[$index].value = $scope.databackup[$index].value;
-            };
 
-            $scope.reset=function(){
-                $scope.newItem={};
-                $scope.$broadcast('show-errors-reset');
-            };
+            $scope.populateEditModal = function(item){
+                angular.extend($scope.editItem, item);
+            }
 
-            $scope.resetEdit=function( $index ){
-                $scope.data[$index].value = $scope.databackup[$index].value;
-            };
+
         }
 
     };//return

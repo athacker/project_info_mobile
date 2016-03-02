@@ -3,9 +3,9 @@
  */
 var GuidelinesServiceModule = angular.module('GuidelinesServiceModule',[]);
 
-GuidelinesServiceModule.service('guidelinesService', ['$resource',  function ( $resource) {
+GuidelinesServiceModule.factory('guidelinesService', ['$resource',  function ( $resource) {
 
-    return $resource('http://localhost:8080/guidelines ', {}, {
+    return $resource('http://localhost:8080/guidelines/:id', {}, {
         query: { method: 'GET',isArray: false }
     });
 

@@ -1,3 +1,3 @@
 <div ng-controller="guidelinesController as gc" ng-init="gc.init()">
- <grid data="gc.data" title="gc.title">   </grid>
+ <grid data="gc.data" title="gc.title" accept="saveGuideline(item)" remove="deleteGuideline(item)"></grid>
 </div>

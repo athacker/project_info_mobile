@@ -7,33 +7,60 @@ var GuidelinesControllerModule = angular.module('GuidelinesControllerModule', ['
  */
 GuidelinesControllerModule.controller('guidelinesController', ['$scope','guidelinesService',function( $scope, guidelinesService) {
 
-   
     var gc = this;
     gc.title = "Guidelines";
     gc.data=[];
-
+    gc.currentRecord={};
     gc.init = init();
 
 
-    /**
-     * @todo replace with api
-     */
-    function init(){
-         guidelinesService.query(  function(data) {
+
+
+    function init() {
+        guidelinesService.query(function (data) {
             gc.data = data._embedded.guidelines;
             console.log(gc.data);
         });
+    }
 
-        //gc.data.push({'title': 'Dev Process', 'value':'Agile'});
-        //gc.data.push({'title': 'Quality', 'value':'Unit Testing Protractor, Mockito'});
-        //gc.data.push({'title': 'Peer Reviews', 'value':'Per Iteration before push to test.'});
-    };
+    $scope.getRecord = function(ID){
+        var guideline = guidelinesService.get({id: ID}, function () {
+            console.log(guideline);
+        });
+    }
+
+    $scope.saveGuideline=function(item) {
+
+       guidelinesService.save(item, function (data) {
+            console.log("Saved...");
+        });
+    }
 
 
+        //console.log(gc.record.id);
+        //console.log(gc.record.value);
+        //console.log(gc.record.title)
+        //if(gc.record.id) {
+        //    guidelinesService.update(gc.record, function (data) {
+        //        console.log("Saved...");
+        //    });
+        //}else{
+        //    gc.saveRecord(record);
+        //}
 
 
+    function saveGuideline(item){
+        alert("Save Guideline!!");
+        if(typeof gc.newRecord.title != 'undefined'  ){
+            guidelinesService.save(gc.newRecord, function (data) {
+                console.log("Saved...");
+            });
+        }
+    }
 
-
+    function deleteGuideline(){
+        console.log("Finish coding delete..");
+    }
 
 
 

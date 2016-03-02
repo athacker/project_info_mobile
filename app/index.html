@@ -52,7 +52,7 @@
 
 <body ng-app="myApp"  ui-prevent-touchmove-defaults >
 
-
+<div ui-yield-to="modals" ></div>
 <!--Left Menu -->
 <div class="sidebar sidebar-left">
    <div ng-include="'sidebar.html'"></div>
@@ -62,6 +62,7 @@
 
 
 <div class="app">
+
 
     <div class="navbar navbar-app navbar-absolute-top">
         <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
