@@ -10,9 +10,7 @@ GuidelinesControllerModule.controller('guidelinesController', ['$scope','guideli
     var gc = this;
     gc.title = "Guidelines";
     gc.data=[];
-    gc.currentRecord={};
     gc.init = init();
-
 
     function init() {
         guidelinesService.query(function (data) {
@@ -21,39 +19,22 @@ GuidelinesControllerModule.controller('guidelinesController', ['$scope','guideli
         });
     }
 
-    $scope.getRecord = function(ID){
+    $scope.getGuideline = function(ID){
         var guideline = guidelinesService.get({id: ID}, function () {
             console.log(guideline);
         });
     }
 
     $scope.saveGuideline=function(item) {
-
-       guidelinesService.save(item, function (data) {
-            console.log("Saved...");
-        });
-    }
-
-
-        //console.log(gc.record.id);
-        //console.log(gc.record.value);
-        //console.log(gc.record.title)
-        //if(gc.record.id) {
-        //    guidelinesService.update(gc.record, function (data) {
-        //        console.log("Saved...");
-        //    });
-        //}else{
-        //    gc.saveRecord(record);
-        //}
-
-
-    function saveGuideline(item){
-        alert("Save Guideline!!");
-        if(typeof gc.newRecord.title != 'undefined'  ){
-            guidelinesService.save(gc.newRecord, function (data) {
-                console.log("Saved...");
-            });
-        }
+       if(typeof item.id === 'undefined') {
+           guidelinesService.save(item, function (data) {
+               console.log("Saved...");
+           });
+       }else{
+           guidelinesService.update(item, function (data) {
+                console.log("Updated...");
+           });
+       }
     }
 
     function deleteGuideline(){
